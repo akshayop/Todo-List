@@ -22,7 +22,7 @@
 
             <!-- FORM to take input and other info -->
             <div class = "form-container">
-                <form  action="" method="post">
+                <form  action="add-tasks" method="post">
 
                     <!-- Description About list -->
                     <div class = "description-container">
@@ -50,6 +50,7 @@
                         <input type="date" id="date" name="date">
                     </div>
 
+                    <!-- Submit button -->
                     <div class="button-container">
                         <button type="submit" class="btn-submit">
                             <span>
@@ -61,8 +62,48 @@
                 </form>
 
             </div>
-
         </header>
+        <main>
+            <div id="todo-list">
+
+                <ul>
+                    <form action="/delete-tasks" method="GET">
+                        <% for(let i of todo_list) { %>
+                            <li>
+                                <div id="checkbox">
+                                    <input type="checkbox" name="<%= i._id %>">
+                                </div>
+
+                                <div>
+                                    <div id="description-list">
+                                        <%= i.description %>`
+                                    </div>
+
+                                    <div id="date-list">
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                        <span>
+                                            <%= i.date %>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div id="category-list">
+                                    <%= i.category %>
+
+                                </div>
+                            </li>
+                        <% } %>
+
+                        <button id="delete-btn">
+                            <i class="fa-solid fa-trash-can"></i>
+                            DELETE TASKS
+                        </button>
+                    </form>
+                    
+                </ul>
+
+            </div>
+        </main>
     </div>
     
 </body>
