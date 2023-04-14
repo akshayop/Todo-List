@@ -31,16 +31,43 @@ app.get('/', (req, res) => {
 // Adding data to back end
 
 app.post('/add-tasks', (req, res) => {
+    let data = req.body.date;
+    if(data == "") {
+        data = "No Deadline";
+    }
+
     Todo.create({
         description: req.body.description,
         category: req.body.category,
-        date: req.body.date
+        date: data
     }).then( (newTasks) => {
         console.log("Data:", newTasks);
         return res.redirect('back');
     }).catch ( (err) => {
         console.log("error while adding data to db", err);
     })
+});
+
+// deleting the list
+app.get('/delete-tasks', (req, res) => {
+    console.log(req.query);
+
+    //  get the id from the query
+
+    let id = req.query;
+
+    // loop to check how much tasks should be deleted
+    let count = Object.keys(id).length;
+    for(let i = 0; i < count; i++) {
+        // find the tasks in the db using id and  deleting it 
+        Todo.findByIdAndDelete(Object.keys(id)[i])
+            .then(() => {
+                console.log("deleted");
+            }).catch( (err) => {
+                console.log("error while deleting the data from db", err);
+            }); 
+    }
+    return res.redirect('back');
 });
 
 // Hosting server 
