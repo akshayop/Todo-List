@@ -51,7 +51,6 @@ app.post('/add-tasks', (req, res) => {
 // deleting the list
 app.get('/delete-tasks', (req, res) => {
     console.log(req.query);
-
     //  get the id from the query
 
     let id = req.query;
@@ -60,14 +59,33 @@ app.get('/delete-tasks', (req, res) => {
     let count = Object.keys(id).length;
     for(let i = 0; i < count; i++) {
         // find the tasks in the db using id and  deleting it 
+        // Todo.findByIdAndDelete(Object.keys(id)[i])
+        //     .then(() => {
+        //         console.log("deleted");
+                
+        //     }).catch( (err) => {
+        //         console.log("error while deleting the data from db", err);
+        //     }); 
+        deleteTodo(i);
+    }
+
+    function deleteTodo(i) {
+        // find the tasks in the db using id and  deleting it 
         Todo.findByIdAndDelete(Object.keys(id)[i])
             .then(() => {
                 console.log("deleted");
+                
             }).catch( (err) => {
                 console.log("error while deleting the data from db", err);
-            }); 
+            });
     }
-    return res.redirect('back');
+
+    setTimeout(function() {
+        return res.redirect('back');
+    }, 1000);
+
+   
+    
 });
 
 // Hosting server 

@@ -25,14 +25,14 @@
         <form  action="add-tasks" method="post">
 
             <!-- Description About list -->
-            <div class = "description-container d-dir">
+            <div id="description-container" class = "description-container d-dir">
                 <label for="description">DESCRIPTION</label>
-                <textarea name="description" placeholder="What do you need to do" required></textarea>
+                <textarea id="description" name="description" placeholder="What do you need to do" required></textarea>
             </div>
 
             <div class="d-flex margin-d">
                     <!-- different Types -->
-                <div class="category-container">
+                <div class="category-container" id="category-container">
                     <label for="category">CATEGORY</label>
                     <select name="category" id="dropdown-list" required>
                         <option value="">Choose a category</option>
@@ -46,14 +46,14 @@
 
                 <!-- Date to Select -->
                 
-                <div class="date-container">
+                <div class="date-container" id="date-container">
                     <label for="date">DUE DATE</label>
                     <input type="date" id="date" name="date">
                 </div>
             </div>
 
             <!-- Submit button -->
-            <div class="button-container">
+            <div class="button-container" style="display: inline;">
                 <button type="submit" class="btn-submit">
                     <span>
                         <i class="fa-solid fa-plus"></i>
@@ -62,14 +62,12 @@
                 </button>
             </div>
         </form>
+
+        <!-- Deleting the list -->
                 
         <form action="/delete-tasks" method="GET">
-            
-            <button class="btn-delete">
-                <i class="fa-solid fa-trash-can"></i>
-                DELETE TASKS
-            </button>
 
+            
             <ul>
                 <% for(let i of todo_list) { %>
                     <li class="d-flex">
@@ -92,15 +90,23 @@
                             </div>
                         </div>
 
-                        <div id="category-list">
-                            <%= i.category %>
-
+                        <div class="category-main">
+                            <div id="category-list" class="category-list">
+                                <%= i.category %>
+                            </div>
                         </div>
                     </li>
                 <% } %>
-            </ul>                    
+            </ul>  
+            
+            <button class="btn-delete">
+                <i class="fa-solid fa-trash-can"></i>
+                DELETE TASKS
+            </button>
         </form>
     </div>
+
+    <script src="js/script.js"></script>
     
 </body>
 </html>

@@ -47,17 +47,19 @@ a{
 /* custamizing the placeholder */
 ::placeholder {
     font-size: 1rem;
-    color: lightgray
+    color: rgb(146, 143, 143);
 }
 
 /* Container  */
 
 #container {
+    /* display: flex; */
     min-height: 70vh;
     height: auto;
     width: 60vw;
     margin: auto;
     margin-top: 2rem;
+    margin-bottom: 2rem;
     padding-bottom: 2rem;
     text-align: center;
     background-color: white;
@@ -75,12 +77,8 @@ a{
     border-bottom: 1px solid lightgray;
 }
 
-/* form */
+/* form */  
 
-form{
-    display: inline;
-    
-}
 
 /* discription */
 
@@ -98,7 +96,6 @@ form{
     width: 50%;
     text-align: start;
     border-right: 1px solid lightgray;
-
 }
 
 /* date */
@@ -119,6 +116,7 @@ textarea {
     border: none;
     color: gray;
     resize: none;
+    
 }
 
 /* focus and hover function for the input select and textarea */
@@ -182,11 +180,21 @@ li {
     text-align: start;
 }
 
-#category-list {
+#category-main {
     display: flex;
-    align-items: center;
     width: 20%;
+    align-items: center;
 }
+
+#category-list {
+    height: 2rem;
+    width: 6rem;
+    margin: 1rem;
+    line-height: 1.5;
+    color: black;
+    border-radius: 0.1rem ;
+}
+
 
 #checkbox {
     margin: 1rem 2rem;    
