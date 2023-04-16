@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>
+        <%= title %>
+    </title>
+    <script src="https://kit.fontawesome.com/4757ac8be3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 
@@ -12,98 +16,90 @@
 
     <div id = "container">
 
-        <!-- Header section -->
-        <header>
+        <!-- Title  -->
+        <div id="title-box">
+            <h1>TODO App</h1>
+        </div>
 
-            <!-- Title  -->
-            <div id="title-box">
-                <h1>Todo List</h1>
+        <!-- FORM to take input and other info -->
+        <form  action="add-tasks" method="post">
+
+            <!-- Description About list -->
+            <div class = "description-container d-dir">
+                <label for="description">DESCRIPTION</label>
+                <textarea name="description" placeholder="What do you need to do" required></textarea>
             </div>
 
-            <!-- FORM to take input and other info -->
-            <div class = "form-container">
-                <form  action="add-tasks" method="post">
-
-                    <!-- Description About list -->
-                    <div class = "description-container">
-                        <label for="description">DESCRIPTION</label>
-                        <textarea name="description" placeholder="What do you need to do" required></textarea>
-                    </div>
-
+            <div class="d-flex margin-d">
                     <!-- different Types -->
-                    <div class="category-container">
-                        <label for="category">CATEGORY</label>
-                        <select name="category" id="dropdown-list" required>
-                            <option value="">Choose a category</option>
-                            <option value="Personal">Personal</option>
-                            <option value="Work">Work</option>
-                            <option value="School">School</option>
-                            <option value="Cleaning">Cleaning</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
+                <div class="category-container">
+                    <label for="category">CATEGORY</label>
+                    <select name="category" id="dropdown-list" required>
+                        <option value="">Choose a category</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Work">Work</option>
+                        <option value="School">School</option>
+                        <option value="Cleaning">Cleaning</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
 
-                    <!-- Date to Select -->
-                    
-                    <div class="date-container">
-                        <label for="date">DUE DATE</label>
-                        <input type="date" id="date" name="date">
-                    </div>
-
-                    <!-- Submit button -->
-                    <div class="button-container">
-                        <button type="submit" class="btn-submit">
-                            <span>
-                                <i class="fa-solid fa-plus"></i>
-                            </span>
-                            ADD TASK
-                        </button>
-                    </div>
-                </form>
-
+                <!-- Date to Select -->
+                
+                <div class="date-container">
+                    <label for="date">DUE DATE</label>
+                    <input type="date" id="date" name="date">
+                </div>
             </div>
-        </header>
-        <main>
-            <div id="todo-list">
 
-                <ul>
-                    <form action="/delete-tasks" method="GET">
-                        <% for(let i of todo_list) { %>
-                            <li>
-                                <div id="checkbox">
-                                    <input type="checkbox" name="<%= i._id %>">
-                                </div>
-
-                                <div>
-                                    <div id="description-list">
-                                        <%= i.description %>`
-                                    </div>
-
-                                    <div id="date-list">
-                                        <i class="fa-solid fa-calendar-days"></i>
-                                        <span>
-                                            <%= i.date %>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div id="category-list">
-                                    <%= i.category %>
-
-                                </div>
-                            </li>
-                        <% } %>
-
-                        <button id="delete-btn">
-                            <i class="fa-solid fa-trash-can"></i>
-                            DELETE TASKS
-                        </button>
-                    </form>
-                    
-                </ul>
-
+            <!-- Submit button -->
+            <div class="button-container">
+                <button type="submit" class="btn-submit">
+                    <span>
+                        <i class="fa-solid fa-plus"></i>
+                    </span>
+                    ADD TASK
+                </button>
             </div>
-        </main>
+        </form>
+                
+        <form action="/delete-tasks" method="GET">
+            
+            <button class="btn-delete">
+                <i class="fa-solid fa-trash-can"></i>
+                DELETE TASKS
+            </button>
+
+            <ul>
+                <% for(let i of todo_list) { %>
+                    <li class="d-flex">
+                        <div class="d-ib">
+                            <div id="checkbox">
+                                <input type="checkbox" name="<%= i._id %>">
+                            </div>
+
+                            <div class="d-dir">
+                                <div id="description-list">
+                                    <%= i.description %>`
+                                </div>
+
+                                <div id="date-list">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    <span>
+                                        <%= i.date %>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="category-list">
+                            <%= i.category %>
+
+                        </div>
+                    </li>
+                <% } %>
+            </ul>                    
+        </form>
     </div>
     
 </body>
